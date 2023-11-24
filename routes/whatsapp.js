@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router();
 const { Client, LocalAuth } = require('whatsapp-web.js')
-const qrcode = require('qrcode-terminal')
+const qrcode = require('qrcode-terminal');
+const send = require('send');
 
 const client = new Client({
     authStrategy : new LocalAuth()
@@ -57,8 +58,11 @@ router.get('/status',(req,res)=>{
 })
 
 router.post('/message', (req,res)=>{
-    console.log(req);
-    console.log(req.body);
+    const number = req.body.number;
+    const message = req.body.message;
+
+    res.send("Pesan Berhasil Dikirim.")
+
 })
 
 client.initialize();
